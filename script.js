@@ -11,16 +11,13 @@ function search(str) {
 
 function searchHandler(e) {
 	suggestions.replaceChildren()
-	showSuggestions(search(input.value.toLocaleLowerCase()).slice(0,10), input.value)
+	showSuggestions(search(input.value.toLocaleLowerCase()).slice(0,6), input.value)
 }
 
 function showSuggestions(results, inputVal) {
-
 	for (let fruit of results){
-		console.log()
-
 		let li = document.createElement('li');
-		let positionVal = fruit.toLocaleLowerCase().search(inputVal)
+		let positionVal = fruit.toLocaleLowerCase().search(inputVal.toLocaleLowerCase())
 		li.innerHTML = `
 		${fruit.slice(0,positionVal)}<b>${fruit.slice(positionVal, positionVal + inputVal.length )}</b>${fruit.slice(positionVal + inputVal.length)}`
 		suggestions.append(li)
