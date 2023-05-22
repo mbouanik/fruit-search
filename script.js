@@ -5,11 +5,21 @@ const fruits = ['Apple', 'Apricot', 'Avocado 🥑', 'Banana', 'Bilberry', 'Black
 
 function search(str) {
 	let results = [];
-	results = fruits.filter((fruit) => fruit.toLocaleLowerCase().includes(str))
+	results = fruits.filter((fruit) => fruit.toLocaleLowerCase().includes(str.trim()) && str)
 	return results;
 }
 
 function searchHandler(e) {
+	let fruitsFromInput = search(input.value)
+	suggestions.replaceChildren()
+
+	
+	for (let fruit of fruitsFromInput){
+		let li = document.createElement('li');
+		li.innerText = fruit
+		li.classList = "fruit-list"
+		suggestions.append(li)
+	}
 
 }
 
@@ -24,5 +34,3 @@ function useSuggestion(e) {
 
 input.addEventListener('keyup', searchHandler);
 suggestions.addEventListener('click', useSuggestion);
-
-console.log(search("ap"))
