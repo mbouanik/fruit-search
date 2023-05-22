@@ -10,14 +10,17 @@ function search(str) {
 }
 
 function searchHandler(e) {
-	let fruitsFromInput = search(input.value)
+	let fruitsFromInput = search(input.value.toLocaleLowerCase()).slice(0,10)
 	suggestions.replaceChildren()
-
-	
+	suggestions.addEventListener('click', (event)=>{
+		if (event.target.tagName === "LI"){
+			input.value = event.target.innerText;
+			suggestions.replaceChildren()
+		}
+	})
 	for (let fruit of fruitsFromInput){
 		let li = document.createElement('li');
 		li.innerText = fruit
-		li.classList = "fruit-list"
 		suggestions.append(li)
 	}
 
