@@ -3,12 +3,6 @@
     padding: 0;
 }
 
-/* :focus {
-  border: 1px solid;
-  border: 1px  #959EC9 solid;
-
-} */
-
 body {
   display: flex;
   justify-content: center;
@@ -31,7 +25,6 @@ input {
   opacity: 50%;
 
 }
-
 
 .search-container input,
 .search-container .suggestions {
