@@ -11,7 +11,7 @@ function search(str) {
 
 function searchHandler(e) {
 	suggestions.replaceChildren()
-	showSuggestions(search(input.value.toLocaleLowerCase()).slice(0,6), input.value)
+	showSuggestions(search(input.value.toLocaleLowerCase()).slice(0,6), input.value.trim())
 }
 
 function showSuggestions(results, inputVal) {
