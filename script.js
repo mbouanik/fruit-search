@@ -10,29 +10,29 @@ function search(str) {
 }
 
 function searchHandler(e) {
-	let fruitsFromInput = search(input.value.toLocaleLowerCase()).slice(0,10)
 	suggestions.replaceChildren()
-	suggestions.addEventListener('click', (event)=>{
-		if (event.target.tagName === "LI"){
-			input.value = event.target.innerText;
-			suggestions.replaceChildren()
-		}
-	})
-	for (let fruit of fruitsFromInput){
-		let li = document.createElement('li');
-		li.innerText = fruit
-		suggestions.append(li)
-	}
-
+	showSuggestions(search(input.value.toLocaleLowerCase()).slice(0,10), input.value)
 }
 
 function showSuggestions(results, inputVal) {
 
-	// TODO
+	for (let fruit of results){
+		console.log()
+
+		let li = document.createElement('li');
+		let positionVal = fruit.toLocaleLowerCase().search(inputVal)
+		li.innerHTML = `
+		${fruit.slice(0,positionVal)}<b>${fruit.slice(positionVal, positionVal + inputVal.length )}</b>${fruit.slice(positionVal + inputVal.length)}`
+		suggestions.append(li)
+	}
 }
 
 function useSuggestion(e) {
-	// TODO
+	if (e.target.tagName === "LI"){
+		input.value = e.target.innerText;
+		suggestions.replaceChildren()
+	}
+
 }
 
 input.addEventListener('keyup', searchHandler);
