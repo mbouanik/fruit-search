@@ -15,13 +15,12 @@ function searchHandler(e) {
 }
 
 function showSuggestions(results, inputVal) {
-	for (let fruit of results){
-		let li = document.createElement('li');
-		let positionVal = fruit.toLocaleLowerCase().search(inputVal.toLocaleLowerCase())
-		li.innerHTML = `
-		${fruit.slice(0,positionVal)}<b>${fruit.slice(positionVal, positionVal + inputVal.length )}</b>${fruit.slice(positionVal + inputVal.length)}`
+	results.map((fruit) => {
+		const li = document.createElement('li');
+		const positionVal = fruit.toLocaleLowerCase().search(inputVal.toLocaleLowerCase())
+		li.innerHTML = `${fruit.slice(0,positionVal)}<b>${fruit.slice(positionVal, positionVal + inputVal.length )}</b>${fruit.slice(positionVal + inputVal.length)}`
 		suggestions.append(li)
-	}
+	})
 }
 
 function useSuggestion(e) {
